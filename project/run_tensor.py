@@ -44,7 +44,7 @@ class Linear(minitorch.Module):
         x = x * w
         out = x.sum(1)
         out = out.view(x.shape[0], self.out_size)
-        out = out + self.bias.value.view(1, *self.bias.value.shape)
+        out = out + self.bias.value
         return out
 
 def default_log_fn(epoch, total_loss, correct, losses):
@@ -99,7 +99,7 @@ class TensorTrain:
 
 if __name__ == "__main__":
     PTS = 50
-    HIDDEN = 16
+    HIDDEN = 2
     RATE = 1.0
     data = minitorch.datasets["Simple"](PTS)
     TensorTrain(HIDDEN).train(data, RATE)
